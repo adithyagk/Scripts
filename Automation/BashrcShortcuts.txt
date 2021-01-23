@@ -1,0 +1,24 @@
+This file contains instructions to use custom commands in linux.
+
+Step 1: Go to ~/.bashrc 
+	command: vim ~/.bashrc (install vim is not installed or use vi)
+Steps 2: Go to the EOF(End of File)
+	- Below is the command to make a directory and cd into it.
+	->
+		mkcd(){
+			mkdir "$1"
+			cd "$1"
+		}
+	The argument is the file name which u want to create
+	Example:
+		mkcd testDir
+       - Below is the command to automate certain git commands.
+       ->
+		gitCommit(){
+			git status()
+			git add .
+			git commit -m "$1"
+			git push
+	The argument is the commit message
+	Example:
+		gitCommit "First commit" 
