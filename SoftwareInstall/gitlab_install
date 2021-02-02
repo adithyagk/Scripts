@@ -1,0 +1,29 @@
+ Self hosted gitlab-ee(Ubuntu) 
+ ---------------------
+ 1. Check ip
+ 	- open terminal
+ 	- type ifconfig
+ 	- vopy inet addr: ex:- 192.168._._
+ 2. Install openssh-server
+ 	- sudo apt-get install openssh-server
+ 3. Install necessary certificates
+ 	- sudo apt-get install -y curl openssh-server ca-certificates
+ 		-y is for permission(yes to all)
+ 4. Installing postfix(Setup a mail server) - not needed for experimental installation but if you require then(optional)
+ 	- sudo apt-get install -y postfix
+ 5. Downloading install packages
+ 	- curl https://packages.gitlab.com/install/repositories/gitlab/gitlaab-ee/script.deb.sh | sudo bash
+ 6. Installing package
+ 	- sudo EXTERNAL_URL="https://{local IP or domain name example:- 192.168._._ or www.example.com" apt-get install gitlab-ee
+ 	This takes a very long time
+ 	Point of failure:
+ 		- gitlab stuck in ruby_block[wait for redis service socket] action run
+ 			- wait for 30 mins, if its still stuck then open a new terminal and type
+ 				- sudo /opt/gitlab/embedded/bin/runsvdir-start
+ 				This shld resume the first terminal operation
+ 			- if it still doesnt resume then
+ 				- sudo gitlab-ctl reconfigure
+ 7. Opening gitlab-ee
+ 	- open browser and type the IP given.
+ 	- username - root
+ 	- password - configure new password
